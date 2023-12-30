@@ -1,0 +1,49 @@
+{% load crispy_forms_tags %} {% block content %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="icon"
+      href="https://cdn-icons-png.flaticon.com/512/2382/2382533.png"
+      type="image/png"
+      sizes="128x128"
+    />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>CareForYou</title>
+  </head>
+  <body>
+    <div>
+      <center>
+        <h1>CareForYou</h1>
+      </center>
+      <br />
+      <h2>Hello {{user.username}},</h2>
+      <br />
+      <h3>
+        We received a request to reset the password for your account for this
+        email address. To initiate the password reset process for your account,
+        click the link below.
+      </h3>
+      <h3>
+        <a href="http://127.0.0.1:8000/reset_password"
+          >http://127.0.0.1:8000/reset_password</a
+        >
+      </h3>
+      <h3>
+        This link can only be used once. If you need to reset your password
+        again, please visit the website
+        <a href="http://127.0.0.1:8000/">http://127.0.0.1:8000</a> and request
+        another reset.
+      </h3>
+      <h3>
+        If you did not make this request, you can simply ignore this email.
+      </h3>
+      <br />
+      <h3>Sincerely,</h3>
+      <h3>CareForYou</h3>
+      <br /><br />
+    </div>
+  </body>
+</html>
+{% endblock %}

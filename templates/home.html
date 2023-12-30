@@ -1,0 +1,405 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="icon"
+      href="{% static 'images/favicon.png' %}"
+      type="image/png"
+      sizes="128x128"
+    />
+    <title>CareForYou</title>
+    <style>
+      #loader {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background: #1e2e46 url("{% static 'images/preloader.gif' %}") no-repeat
+          center center;
+      }
+      main {
+        background-color: cyan;
+        padding: 20px;
+      }
+      #info {
+        font-size: 20px;
+        text-indent: 50px;
+        padding: 20px;
+        margin: 20px;
+        background-color: black;
+        color: white;
+        border: 2px solid black;
+      }
+      body {
+        background-image: url("{% static 'images/bg.jpg' %}");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+      }
+      .simage {
+        position: static;
+        width: 100%;
+      }
+      .simage .bsignup {
+        position: absolute;
+        top: 55%;
+        left: 80%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        background-color: indigo;
+        color: white;
+        font-size: 35px;
+        padding: 12px 24px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        text-align: center;
+        text-decoration: none;
+        border: 8px solid white;
+      }
+      .simage .bcare {
+        position: absolute;
+        top: 40%;
+        left: 80%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        font-size: 75px;
+        padding: 12px 24px;
+        text-align: center;
+      }
+      .simage .bsignup:hover {
+        background-color: black;
+      }
+      @media all and (max-width: 968px) {
+        .simage img {
+          content: url("{% static 'images/careforyou.PNG' %}");
+          width: 100%;
+          height: 350px;
+        }
+        .simage .bsignup {
+          display: none;
+        }
+        .simage .bcare {
+          display: none;
+        }
+      }
+      @media all and (max-width: 968px) {
+        td {
+          display: block;
+        }
+        .responsive {
+          width: 100%;
+          height: auto;
+        }
+      }
+      img:hover {
+        transform: scale(1.08);
+        cursor: pointer;
+      }
+      #sima:hover {
+        cursor: pointer;
+        transform: none;
+      }
+    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <!--For navbar-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <!--For footer icons-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <!--For swiper-->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper@7/swiper-bundle.min.css"
+    />
+  </head>
+  <body onload="myFunction1()" style="margin: 0">
+    <div id="loader"></div>
+    <script>
+      var myVar;
+      function myFunction1() {
+        myVar = setTimeout(showPage, 1000);
+      }
+      function showPage() {
+        document.getElementById("loader").style.display = "none";
+        document.getElementById("myDiv").style.display = "block";
+      }
+    </script>
+    <div style="display: none" id="myDiv">
+      <nav>
+        <div class="logo">
+          <img width="60" height="60" src="{% static 'images/favicon.png' %}" />
+          <b id="clog">CareForYou</b>
+        </div>
+        <label for="btn" class="icon">
+          <span class="fa fa-bars"></span>
+        </label>
+        <input type="checkbox" id="btn" />
+        <ul>
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="{% url 'healthy_living' %}">Healthy Living</a></li>
+          <li>
+            <label for="btn-1" class="show">Login</label>
+            <a href="#">Login</a>
+            <input type="checkbox" id="btn-1" />
+            <ul>
+              <li><a href="{% url 'adminlogin' %}">Admin Login</a></li>
+              <li><a href="{% url 'userlogin' %}">User Login</a></li>
+            </ul>
+          </li>
+          <table>
+            <a class="s1" href="#"
+              ><img
+                width="30"
+                height="30"
+                src="{% static 'images/facebook.webp' %}"
+            /></a>
+            <a class="s1" href="#"
+              ><img
+                width="30"
+                height="30"
+                src="{% static 'images/insta.jpg' %}"
+            /></a>
+            <a class="s1" href="#"
+              ><img
+                width="30"
+                height="30"
+                src="{% static 'images/twitter.png' %}"
+            /></a>
+            <a class="s1" href="#"
+              ><img
+                width="30"
+                height="30"
+                src="{% static 'images/youtube.png' %}"
+            /></a>
+          </table>
+        </ul>
+      </nav>
+
+      <script>
+        $(".icon").click(function () {
+          $("span").toggleClass("cancel");
+        });
+      </script>
+
+      <br />
+      <div class="simage">
+        <img
+          width="100%"
+          height="450px"
+          src="{% static 'images/signbg.jpg' %}"
+          id="sima"
+        />
+        <h1 class="bcare">CareForYou</h1>
+        <a href="{% url 'usersign' %}" class="bsignup">SIGN UP</a>
+      </div>
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img
+              src="{% static 'images/health.PNG' %}"
+              width="100%"
+              height="450px"
+              id="sima"
+            />
+          </div>
+          <div class="swiper-slide">
+            <img
+              src="{% static 'images/yoga.jpg' %}"
+              width="100%"
+              height="450px"
+              id="sima"
+            />
+          </div>
+          <div class="swiper-slide">
+            <img
+              src="{% static 'images/goodfood.jpg' %}"
+              width="100%"
+              height="450px"
+              id="sima"
+            />
+          </div>
+          <div class="swiper-slide">
+            <img
+              src="{% static 'images/doctor.jpg' %}"
+              width="100%"
+              height="450px"
+              id="sima"
+            />
+          </div>
+          <div class="swiper-slide">
+            <img
+              src="{% static 'images/care.webp' %}"
+              width="100%"
+              height="450px"
+              id="sima"
+            />
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-scrollbar"></div>
+      </div>
+      <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+      <script>
+        const swiper = new Swiper(".swiper", {
+          spaceBetween: 30,
+          centeredSlides: true,
+          autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+          },
+          pagination: {
+            el: ".swiper-pagination",
+          },
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+          scrollbar: {
+            el: ".swiper-scrollbar",
+          },
+        });
+      </script>
+      <main>
+        <center>
+          <article>
+            <big><h1 style="font-size: 7">CareForYou</h1></big>
+            <p id="info">
+              ‘CareForYou’ is a website devoted to provide authoritative medical
+              information and health tips. We make it easy for readers to
+              understand detailed articles, with minimal effort. CareForYou has
+              got a group of highly experienced doctors and a team of qualified
+              executives who are dedicated to provide medical support for mental
+              wellness, strokes, and other various medical conditions. On this
+              site visitors can easily request an appointment with a doctor or
+              receive health information pertaining to specific diseases.
+              Additionally, they can speak directly with physicians about
+              matters relating to emotional well-being and physical health
+              alike.
+            </p>
+          </article>
+        </center>
+      </main>
+      <center>
+        <h1>Why CareForYou?</h1>
+        <table class="a1">
+          <td>
+            <img
+              src="{% static 'images/precise.png' %}"
+              width="200"
+              height="200"
+              class="responsive"
+            />
+          </td>
+          <td>
+            <img
+              src="{% static 'images/userfriend.png' %}"
+              width="200"
+              height="200"
+              class="responsive"
+            />
+          </td>
+          <td>
+            <img
+              src="{% static 'images/exprdoc.png' %}"
+              width="200"
+              height="200"
+              class="responsive"
+            />
+          </td>
+          <td>
+            <img
+              src="{% static 'images/advice.png' %}"
+              width="200"
+              height="200"
+              class="responsive"
+            />
+          </td>
+          <td>
+            <img
+              src="{% static 'images/schedule.png' %}"
+              width="200"
+              height="200"
+              class="responsive"
+            />
+          </td>
+          <td>
+            <img
+              src="{% static 'images/connected.png' %}"
+              width="200"
+              height="200"
+              class="responsive"
+            />
+          </td>
+        </table>
+      </center>
+      <!--iframe
+        src="{% static 'images/testimonials.html' %}"
+        width="100%"
+        height="525"
+      ></iframe-->
+      <!--script type="text/javascript">
+        (function (d, m) {
+          var kommunicateSettings = {
+            appId: "1345f5fb1c0d271d7f1ee5fbd828401fa",
+            popupWidget: true,
+            automaticChatOpenOnNavigation: true,
+          };
+          var s = document.createElement("script");
+          s.type = "text/javascript";
+          s.async = true;
+          s.src = "https://widget.kommunicate.io/v2/kommunicate.app";
+          var h = document.getElementsByTagName("head")[0];
+          h.appendChild(s);
+          window.kommunicate = m;
+          m._globals = kommunicateSettings;
+        })(document, window.kommunicate || {});
+      </script-->
+      <div class="footer">
+        <div class="box-container">
+          <div class="box">
+            <h3>Contact Info</h3>
+            <p><i class="fas fa-map-marker-alt"></i>Chennai-600020</p>
+            <p><i class="fas fa-envelope"></i>car4u@gmail.com</p>
+            <p><i class="fas fa-phone"></i>+444-555-666</p>
+            <p><i class="fas fa-phone"></i>+111-222-333</p>
+          </div>
+          <div class="box">
+            <h3>Branch Location</h3>
+            <a href="#">India</a>
+            <a href="#">USA</a>
+            <a href="#">France</a>
+            <a href="#">Russia</a>
+          </div>
+          <div class="box">
+            <h3>Quick Links</h3>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Healthy Living</a>
+            <a href="#">Login</a>
+          </div>
+          <div class="box">
+            <h3>Follow Us</h3>
+            <a href="#">Instagram</a>
+            <a href="#">Facebook</a>
+            <a href="#">Twitter</a>
+            <a href="#">Youtube</a>
+          </div>
+        </div>
+        <h1 class="credit">
+          © Copyright 2023 - CareForYou. All Rights Reserved.
+        </h1>
+      </div>
+    </div>
+  </body>
+</html>

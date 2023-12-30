@@ -1,0 +1,63 @@
+conda update conda
+conda update --all
+conda list
+
+ $(function() {
+  var $dp1 = $("#datepicker1");
+  $dp1.datepicker({
+    changeYear: true,
+    changeMonth: true,
+    minDate: 0,
+    dateFormat: "yy-m-dd",
+    yearRange: "-100:+20",
+  });
+});
+
+#in vscode
+python.exe -m pip install --upgrade pip
+pip install -U scikit-learn
+
+#in jupyter
+!pip install -U scikit-learn
+
+python manage.py makemigrations
+python manage.py migrate
+
+path("deldoct/<int:id>",views.deldoct,name="deldoct"),
+@admin_login_required
+def deldoct(request,id):
+    deldoct=DoctorModel.objects.get(doc_id=id)
+    deldoct.delete()
+    return redirect('viewdoctor')
+ <a
+                  href="deldoct/{{result.doc_id}}"
+                  onclick="return confirm('Are u sure you want to delete?')"
+                  class="tablebtn"
+                  >Delete</a
+                >
+
+
+ <!---hr style="border-top: 10px solid black" ---/>
+
+20ucsa208@stellamariscollege.edu.in
+abc
+monika.kamal97@gmail.com
+moni
+
+appointments
+total appoint
+view appoint
+ <!--a href="{% url 'summa' %}">Summa<br /> </a-->
+/**def summa(request):
+    html_content = render_to_string("cancel_template.html",{'username':'Venkat'})
+    text_content=strip_tags(html_content)
+    email=EmailMultiAlternatives("CareForYou",text_content,"settings.EMAIL_HOST_USER",["reshma.kamal25@gmail.com"])
+    email.attach_alternative(html_content,"text/html")
+    email.fail_silenty=False
+    email.send()
+    return render(request, 'userlogin.html')
+
+path("summa",views.summa,name="summa"),
+
+
+python manage.py runserver

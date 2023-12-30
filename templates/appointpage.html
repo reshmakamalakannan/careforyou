@@ -1,0 +1,331 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="icon"
+      href="{% static 'images/favicon.png' %}"
+      type="image/png"
+      sizes="128x128"
+    />
+    <title>CareForYou</title>
+    <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script-->
+    <link
+      href="http://netdna.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+    <link
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+
+<link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+ <script>
+  
+$(function () {
+    $("#datepicker1").datepicker({
+        minDate: new Date(),
+        maxDate: new Date(new Date().setMonth(new Date().getMonth() + 2)),
+        dateFormat: "yy-m-dd"
+    });
+});
+    </script>
+    <style>
+      body {
+        background-image: url("{% static 'images/bg.jpg' %}");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+      }
+
+      @media all and (max-width: 968px) {
+        .responsive {
+          width: 100%;
+          height: auto;
+        }
+      }
+      body {
+        width: 100%;
+        height: 100%;
+      }
+      .inner-layer {
+        position: static;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 147, 173, 0.7);
+        overflow: auto;
+      }
+      .form-data {
+        margin-top: 21%;
+        background-color: #fff;
+      }
+      .form-body {
+        padding: 20px;
+      }
+      .form-head {
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+      }
+      .form-head h1 {
+        font-size: 45px;
+        font-weight: 600;
+      }
+      .no-margin {
+        margin: 0px;
+      }
+      .form-row {
+        margin-bottom: 15px;
+      }
+      .form-control {
+        background-color: #f7f7ff;
+        border-radius: 0px;
+      }
+      .form-control:focus {
+        box-shadow: none;
+        border: 3px solid #138496;
+      }
+      .btn-appointment {
+        background-color: #138496 !important;
+        border-color: #138496 !important;
+        width: 100%;
+      }
+      .content {
+        margin-top: 15%;
+        text-align: center;
+        color: #fff;
+        padding: 30px;
+      }
+      .content h1 {
+        font-weight: 600;
+        font-size: 3.5rem;
+      }
+      .content h2 {
+        font-weight: 600;
+        font-size: 2.5rem;
+        margin-top: 20px;
+      }
+      
+    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'style2.css' %}" />
+    <!--For navbar-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    />
+    <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script-->
+    <!--For footer icons-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <nav>
+      <div class="logo">
+        <img width="60" height="60" src="{% static 'images/favicon.png' %}" />
+        <b id="clog">CareForYou</b>
+      </div>
+      <label for="btn" class="icon">
+        <span class="fa fa-bars"></span>
+      </label>
+      <input type="checkbox" id="btn" />
+      <ul>
+        <li><a href="{% url 'userhome' %}">Home</a></li>
+        <li>
+          <label for="btn-1" class="show">Predict Disease</label>
+          <a href="#">Predict Disease</a>
+          <input type="checkbox" id="btn-1" />
+          <ul>
+            <li><a href="{% url 'strokepredict' %}">Stroke</a></li>
+            <li><a href="{% url 'diabetespredict' %}">Diabetes</a></li>
+            <li><a href="{% url 'lungcancer' %}">Lung Cancer</a></li>
+            <li><a href="{% url 'heartpredict' %}">Heart</a></li>
+          </ul>
+        </li>
+        <li>
+          <label for="btn-2" class="show">Appointments</label>
+          <a href="#">Appointments</a>
+          <input type="checkbox" id="btn-2" />
+          <ul>
+            <li><a href="{% url 'bookappoint' %}">Book Appointment</a></li>
+            <li><a href="{% url 'myappoints' %}">View Appointment</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="{% url 'feedback' %}">Feedback</a>
+        </li>
+        {% if current_user %}
+        <li>
+          <label for="btn-3" class="show">Hello {{current_user}}</label>
+          <a href="#">Hello {{current_user}}</a>
+          <input type="checkbox" id="btn-3" />
+          <ul>
+            <li><a href="{% url 'editprofile' %}">Edit Profile</a></li>
+            <li><a href="{% url 'userlogout' %}">Logout</a></li>
+          </ul>
+        </li>
+        {% endif %}
+      </ul>
+    </nav>
+
+    <script>
+      $(".icon").click(function () {
+        $("span").toggleClass("cancel");
+      });
+    </script>
+    <br />
+    <center>
+      <img src="{% static 'images/book.jpeg' %}" class="responsive" />
+    </center>
+    <br />
+
+    <div class="inner-layer">
+      <div class="container">
+        <div class="row no-margin">
+          <div class="col-sm-7">
+            <div class="content">
+               <h1>Find your</h1>
+              <h1>Doctor Details</h1>
+               <h1>Here</h1>
+               <h3>Doctor Id : {{doct.doc_id}}</h3>
+                <h3>Doctor Name : {{doct.docname}}</h3>
+                <h3>Gender : {{doct.doc_gender}}</h3>
+                <h3>Specialist : {{doct.specialist}}</h3>
+                <h3>Experience : {{doct.doc_expr}}</h3>
+                <h3>Email ID : {{doct.doc_emailid}}</h3>
+                <h3>Phone Number : {{doct.doc_phno}}</h3>
+                <h3>Address : {{doct.doc_addr}}</h3>
+                <h3>Registered Doctor ID : {{doct.doc_num}}</h3>
+                <br/>
+                <h4>Our Doctors are available all days from 9AM to 7PM.
+                  Once you book appointment your appointment details will be 
+                  emailed to your registered Email ID.</h4>
+            </div>
+          </div>
+          <div class="col-sm-5">
+            <div class="form-data">
+              <div class="form-head">
+               <center><h1>Book Appointment</h1></center> 
+              </div>
+               <form method="POST">
+                  {% csrf_token %}
+              <div class="form-body">
+                <div class="row form-row">
+                 <h6>Patient Name</h6>
+                 </div>
+                <div class="row form-row">
+                  <input
+                    type="text"
+                    placeholder="Enter Patient Name"
+                    class="form-control" 
+                    pattern="[A-Za-z]{3,}"
+                    autocomplete="off"
+                    name="pat_name"required
+                  />
+                </div>
+                <div class="row form-row">
+                 <h6>Patient Age</h6>
+                 </div>
+                <div class="row form-row">
+                  <input
+                    type="number"
+                    placeholder="Enter Age"
+                    autocomplete="off"
+                    name="pat_age"
+                    class="form-control" required
+                  />
+                </div>
+                <div class="row form-row">
+                 <h6>Phone Number</h6>
+                 </div>
+                <div class="row form-row">
+                  <input
+                    type="text"
+                    placeholder="Enter Phone Number"
+                    class="form-control" 
+                    pattern="[0-9]{10}"
+                    autocomplete="off"
+                    name="pat_phno" required
+                  />
+                </div>
+                <div class="row form-row">
+                 <h6>Symptoms</h6>
+                 </div>
+                  <div class="row form-row">
+                  <input
+                    type="text"
+                    placeholder="Enter Symptoms"
+                    class="form-control" autocomplete="off"
+                    name="pat_sympt" required
+                  />
+                </div>
+                <div class="row form-row">
+                 <h6>Appointment Date</h6>
+                 </div>
+                <div class="row form-row">
+                  <input
+                    id="datepicker1"
+                    type="text"
+                    placeholder="Enter Appointment Date"
+                    class="form-control"
+                    name="appo_date"
+                    autocomplete="off"
+                    readonly="readonly"
+                    required
+                  />
+                </div>
+                 <div class="row form-row">
+                 <h6>Appointment Time</h6>
+                 </div>
+                   <div class="row form-row">
+                  <input
+                    id="appo_time"
+                    type="time"
+                    name="appo_time"
+                    class="form-control" 
+                    placeholder="Enter Appointment Time"
+                    autocomplete="off" min="09:00" max="19:00" step="900"
+                    required
+                  />
+                </div>
+                   <div class="row form-row">
+                  <button class="btn btn-success btn-appointment"
+                  onclick="return submitFunction(datepicker1.value)">
+                    Book Appointment
+                  </button>
+                </div>
+                </div>
+              </div>
+            </div>
+             </form>
+          </div>
+        </div>       
+<br/>
+      </div> 
+    </div>
+    <br />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.0.4/popper.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+    <div class="footer">
+      <h1 class="credit">
+        © Copyright 2023 - CareForYou. All Rights Reserved.
+      </h1>
+    </div>
+   <script type="text/javascript">
+      function submitFunction(datepicker1) {
+        if(datepicker1=="")
+        {
+          alert("Select Appointment date and all other fields correctly!!");
+          return false;
+        }
+    }
+    </script>
+  </body>
+</html>

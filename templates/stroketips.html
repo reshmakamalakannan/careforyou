@@ -1,0 +1,312 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="icon"
+      href="{% static 'images/favicon.png' %}"
+      type="image/png"
+      sizes="128x128"
+    />
+    <title>CareForYou</title>
+    <style>
+      #up {
+        position: fixed;
+        right: 10px;
+        bottom: 10px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: #e62739;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+        color: #ffffff;
+        border: none;
+        outline: none;
+        cursor: pointer;
+      }
+      :root {
+        --background: #e39382;
+        --primary: #b27a43;
+        --secondary: #ff775b;
+        --darkgray: rgb(78, 78, 78);
+
+        --fontBody: "Open Sans", sans-serif;
+      }
+      body {
+        background-image: url('data:image/svg+xml,%3Csvg width="52" height="26" viewBox="0 0 52 26" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%239C92AC" fill-opacity="0.4"%3E%3Cpath d="M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z" /%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+        background-color: var(--background);
+        overflow-x: hidden;
+      }
+      section {
+        left: 50%;
+        top: 70%;
+        position: static;
+        transform: translate(20%);
+        display: block;
+        box-sizing: border-box;
+        font-family: var(--fontBody);
+        background-color: var(--background);
+        background-image: url('data:image/svg+xml,%3Csvg width="52" height="26" viewBox="0 0 52 26" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%239C92AC" fill-opacity="0.4"%3E%3Cpath d="M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z" /%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+      }
+
+      .blog-entry {
+        margin-bottom: 50px;
+        width: 900px;
+        height: 220px;
+        background-color: white;
+
+        padding-left: 150px;
+        padding-right: 50px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+
+        border-top-right-radius: 250px;
+        border-bottom-right-radius: 250px;
+      }
+
+      .blog-img {
+        width: 230px;
+        height: 230px;
+        position: absolute;
+        margin-top: -20px;
+        margin-left: -275px;
+        border-radius: 100%;
+        box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+        -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+        background-size: cover;
+      }
+
+      .blog-entry:hover .content-date {
+        opacity: 0.75;
+      }
+
+      .blog-entry .blog-content span {
+        display: block;
+        text-align: justify;
+      }
+
+      .blog-entry:hover .content-title {
+        color: var(--primary);
+      }
+
+      .content-text {
+        margin-top: 20px;
+      }
+
+      @media all and (max-width: 968px) {
+        h1 {
+          font-size: 35px;
+        }
+        .responsive {
+          width: 100%;
+          height: auto;
+        }
+        .blog-entry {
+          width: 380px;
+          height: 800px;
+          font-size: 15px;
+          border-top-right-radius: 130px;
+          border-bottom-right-radius: 130px;
+        }
+        .blog-img {
+          width: 210px;
+          height: 235px;
+          position: absolute;
+          margin-top: 290px;
+          margin-left: -220px;
+          border-radius: 100%;
+          box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+          -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+          -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+          background-size: cover;
+        }
+      }
+      img:hover {
+        transform: scale(1.08);
+        cursor: pointer;
+      }
+    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <!--For navbar-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <!--for up arrow-->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--For footer icons-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <nav>
+      <div class="logo">
+        <img width="60" height="60" src="{% static 'images/favicon.png' %}" />
+        <b id="clog">CareForYou</b>
+      </div>
+      <label for="btn" class="icon">
+        <span class="fa fa-bars"></span>
+      </label>
+      <input type="checkbox" id="btn" />
+      <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'about' %}">About</a></li>
+        <li><a href="{% url 'healthy_living' %}">Healthy Living</a></li>
+        <li>
+          <label for="btn-1" class="show">Login</label>
+          <a href="#">Login</a>
+          <input type="checkbox" id="btn-1" />
+          <ul>
+            <li><a href="{% url 'adminlogin' %}">Admin Login</a></li>
+            <li><a href="{% url 'userlogin' %}">User Login</a></li>
+          </ul>
+        </li>
+        <table>
+          <a class="s1" href="#"
+            ><img
+              width="30"
+              height="30"
+              src="{% static 'images/facebook.webp' %}"
+          /></a>
+          <a class="s1" href="#"
+            ><img width="30" height="30" src="{% static 'images/insta.jpg' %}"
+          /></a>
+          <a class="s1" href="#"
+            ><img
+              width="30"
+              height="30"
+              src="{% static 'images/twitter.png' %}"
+          /></a>
+          <a class="s1" href="#"
+            ><img
+              width="30"
+              height="30"
+              src="{% static 'images/youtube.png' %}"
+          /></a>
+        </table>
+      </ul>
+    </nav>
+
+    <script>
+      $(".icon").click(function () {
+        $("span").toggleClass("cancel");
+      });
+    </script>
+
+    <br />
+     <center>
+      <h1>What Steps Can You Take to Lower Your Risk of Stroke?
+        </h1><br/>
+      <img src="{% static 'images/healthy_living/stroke.jpg' %}" class="responsive" height="300" width="600"/>
+      </center>
+      <br/>
+    <section>
+<div class="blog-entry">
+    <img class="blog-img" src="{% static 'images/healthy_living/bp.jpg' %}" alt="">
+    <div class="blog-content">
+      <div class="content-title"><h1>Lower blood pressure</h1></div>
+      <span class="content-text"> High blood pressure is a huge factor, doubling or even quadrupling your stroke risk if it is not controlled. High blood pressure is the biggest contributor to the risk of stroke in both men and women. Monitoring blood pressure and, if it is elevated, treating it, is probably the biggest difference people can make to their vascular health.
+
+ </span>
+    </div>
+    </div>
+  </div>
+  <div class="blog-entry">
+    <img class="blog-img" src="{% static 'images/healthy_living/weightloss.jpg' %}" alt="">
+    <div class="blog-content">
+      <div class="content-title"><h1>Lose weight
+    </h1></div>
+      <span class="content-text">Obesity, as well as the complications linked to it (including high blood pressure and diabetes), raises your odds of having a stroke. If you're overweight, losing as little as 10 pounds can have a real impact on your stroke risk.
+
+        Your goal: While an ideal body mass index (BMI) is 25 or less, that may not be realistic for you. Work with your doctor to create a personal weight loss strategy.</span>
+    </div>
+    </div>
+  </div>
+  <div class="blog-entry">
+    <img class="blog-img" src="{% static 'images/healthy_living/exercise.jpg' %}">
+    <div class="blog-content">
+      <div class="content-title"><h1>Exercise more</h1></div>
+      <span class="content-text">Take a walk around your neighborhood every morning after breakfast.
+        Start a fitness club with friends.
+        When you exercise, reach the level at which you're breathing hard, but you can still talk.
+        Take the stairs instead of an elevator when you can.
+        If you don't have 30 consecutive minutes to exercise, break it up into 10- to 15-minute sessions a few times each day.</span>
+    </div>
+    </div>
+  </div>
+
+  <div class="blog-entry">
+    <img class="blog-img" src="{% static 'images/healthy_living/artialfibrilation.jpg' %}">
+    <div class="blog-content">
+      <div class="content-title"><h1> Treat atrial fibrillation</h1></div>
+      <span class="content-text"> Atrial fibrillation is a form of irregular heartbeat that causes clots to form in the heart. Those clots can then travel to the brain, producing a stroke. Atrial fibrillation carries almost a fivefold risk of stroke, and should be taken seriously.You may need to take an anticoagulant drug (blood thinner), such as one of the direct-acting anticoagulant drugs to reduce your stroke risk from atrial fibrillation.</span>
+    </div>
+    </div>
+  </div>
+
+  <div class="blog-entry">
+    <img class="blog-img" src="{% static 'images/healthy_living/smoking.jpg' %}">
+    <div class="blog-content">
+      <div class="content-title"><h1>Quit smoking</h1></div>
+      <span class="content-text">  Ask your doctor for advice on the most appropriate way for you to quit.
+        Use quit-smoking aids, such as nicotine pills or patches, counseling, or medicine.
+        Don't give up. Most smokers need several tries to quit. See each attempt as bringing you one step closer to successfully beating the habit.</span>
+    </div>
+    </div>
+  </div>
+</section>
+    <br />
+    <div class="footer">
+      <div class="box-container">
+        <div class="box">
+          <h3>Contact Info</h3>
+          <p><i class="fas fa-map-marker-alt"></i>Chennai-600020</p>
+          <p><i class="fas fa-envelope"></i>car4u@gmail.com</p>
+          <p><i class="fas fa-phone"></i>+444-555-666</p>
+          <p><i class="fas fa-phone"></i>+111-222-333</p>
+        </div>
+        <div class="box">
+          <h3>Branch Location</h3>
+          <a href="#">India</a>
+          <a href="#">USA</a>
+          <a href="#">France</a>
+          <a href="#">Russia</a>
+        </div>
+        <div class="box">
+          <h3>Quick Links</h3>
+          <a href="#">Home</a>
+          <a href="#">About</a>
+          <a href="#">Healthy Living</a>
+          <a href="#">Login</a>
+        </div>
+        <div class="box">
+          <h3>Follow Us</h3>
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+          <a href="#">Twitter</a>
+          <a href="#">Youtube</a>
+        </div>
+      </div>
+      <h1 class="credit">
+        © Copyright 2023 - CareForYou. All Rights Reserved.
+      </h1>
+    </div>
+    <button id="up"><i class="material-icons">arrow_upward</i></button>
+    <script>
+      const up = document.querySelector("#up");
+      up.addEventListener("click", function () {
+        $("html,body").animate({ scrollTop: 0 }, "slow");
+      });
+    </script>
+  </body>
+</html>

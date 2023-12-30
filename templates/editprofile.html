@@ -1,0 +1,193 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="icon"
+      href="{% static 'images/favicon.png' %}"
+      type="image/png"
+      sizes="128x128"
+    />
+    <title>CareForYou</title>
+    <style>
+      body {
+        background-image: url("{% static 'images/bg.jpg' %}");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+      }
+
+      @media all and (max-width: 968px) {
+        .responsive {
+          width: 100%;
+          height: auto;
+        }
+      }
+    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'style2.css' %}" />
+    <link rel="stylesheet" href="{% static 'edit.css' %}" />
+    <!--For navbar-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <!--For footer icons-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <nav>
+      <div class="logo">
+        <img width="60" height="60" src="{% static 'images/favicon.png' %}" />
+        <b id="clog">CareForYou</b>
+      </div>
+      <label for="btn" class="icon">
+        <span class="fa fa-bars"></span>
+      </label>
+      <input type="checkbox" id="btn" />
+      <ul>
+        <li><a href="{% url 'userhome' %}">Home</a></li>
+        <li>
+          <label for="btn-1" class="show">Predict Disease</label>
+          <a href="#">Predict Disease</a>
+          <input type="checkbox" id="btn-1" />
+          <ul>
+            <li><a href="{% url 'strokepredict' %}">Stroke</a></li>
+            <li><a href="{% url 'diabetespredict' %}">Diabetes</a></li>
+            <li><a href="{% url 'lungcancer' %}">Lung Cancer</a></li>
+            <li><a href="{% url 'heartpredict' %}">Heart</a></li>
+          </ul>
+        </li>
+        <li>
+          <label for="btn-2" class="show">Appointments</label>
+          <a href="#">Appointments</a>
+          <input type="checkbox" id="btn-2" />
+          <ul>
+            <li><a href="{% url 'bookappoint' %}">Book Appointment</a></li>
+            <li><a href="{% url 'myappoints' %}">View Appointment</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="{% url 'feedback' %}">Feedback</a>
+        </li>
+        {% if current_user %}
+        <li>
+          <label for="btn-3" class="show">Hello {{current_user}}</label>
+          <a href="#">Hello {{current_user}}</a>
+          <input type="checkbox" id="btn-3" />
+          <ul>
+            <li><a href="{% url 'editprofile' %}">Edit Profile</a></li>
+            <li><a href="{% url 'userlogout' %}">Logout</a></li>
+          </ul>
+        </li>
+        {% endif %}
+      </ul>
+    </nav>
+
+    <script>
+      $(".icon").click(function () {
+        $("span").toggleClass("cancel");
+      });
+    </script>
+
+    <br />
+    <center>
+      <img
+        src="{% static 'images/takecare.webp' %}"
+        width="90%"
+        class="responsive"
+      /><br /><br />
+      <div class="container">
+        <div class="header">
+          <h2>My Profile</h2>
+        </div>
+        <form class="form" method="POST">
+          {% csrf_token %}
+          <div class="form-control">
+            <lable for="username">User Name</lable>
+            <input
+              type="text"
+              placeholder="Enter your username"
+              required
+              pattern="[A-Za-z]{3,}"
+              autocomplete="off"
+              name="username"
+              value="{{usr.username}}"
+            />
+          </div>
+          <div class="form-control">
+            <lable for="u_emailid">Email</lable>
+            <input
+              type="email"
+              placeholder="Enter your email"
+              required
+              autocomplete="off"
+              value="{{usr.u_emailid}}"
+              name="u_emailid"
+            />
+          </div>
+          <div class="form-control">
+            <lable for="u_phno">Phone number</lable>
+            <input
+              type="tel"
+              placeholder="Enter your number"
+              required
+              pattern="[0-9]{10}"
+              autocomplete="off"
+              name="u_phno"
+              value="{{usr.u_phno}}"
+            />
+          </div>
+          <div class="form-control">
+            <lable for="u_dob">DOB</lable>
+            <input
+              type="date"
+              placeholder="Enter your DOB"
+              required
+              id="u_dob"
+              name="u_dob"
+              value=""
+            />
+            <!--yyyy-mm-dd-->
+          </div>
+          <div class="form-control">
+            <lable for="u_gender">Gender</lable>
+            <select id="u_gender" name="u_gender" required="">
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+          </div>
+          <div class="form-control">
+            <button>Update Profile</button>
+          </div>
+        </form>
+      </div>
+    </center>
+    {% if usr.u_gender == 'Male' %}
+    <script>
+      document.querySelector("#u_gender").value = "Male";
+    </script>
+    {% elif usr.u_gender == 'Female' %}
+    <script>
+      document.querySelector("#u_gender").value = "Female";
+    </script>
+    {% endif %}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
+    <script>
+      var d = new Date("{{usr.u_dob}}");
+      var crt = moment(d).format("YYYY-MM-DD");
+      document.getElementById("u_dob").defaultValue = crt;
+    </script>
+
+    <br />
+    <div class="footer">
+      <h1 class="credit">
+        © Copyright 2023 - CareForYou. All Rights Reserved.
+      </h1>
+    </div>
+  </body>
+</html>

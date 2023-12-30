@@ -1,0 +1,194 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="icon"
+      href="{% static 'images/favicon.png' %}"
+      type="image/png"
+      sizes="128x128"
+    />
+    <title>CareForYou</title>
+    <style>
+      @media all and (max-width: 968px) {
+        .responsive {
+          width: 100%;
+          height: auto;
+        }
+      }
+      img:hover {
+        transform: scale(1.08);
+        cursor: pointer;
+      }
+    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <!--For navbar-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <!--admin-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <link
+      href="http://netdna.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+    <link
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+   
+    <style type="text/css">
+      body{
+        background-color: #ffc000;
+      }
+      .order-card {
+        color: black;
+      }
+      .bg-c-green {
+        background: #92d050;
+      }
+      .bg-c-yellow {
+        background: #ffff00;
+      }
+      .bg-c-pink {
+        background: #f7396f;
+      }
+       .bg-c-red {
+        background: orangered;
+      }
+      .card {
+        -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
+        box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
+        border: 3px solid black;
+        margin-bottom: 30px;
+        -webkit-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+      }
+      .card .card-block {
+        padding: 25px;
+      }
+      .order-card i {
+        font-size: 70px;
+      }
+      .f-left {
+        float: left;
+      }
+      .f-right {
+        float: right;
+      }
+      .cust-grid{
+      display: flex;
+      justify-content: center;
+      flex-flow:row wrap;
+      }
+      .cust-grid-col{
+      float:none;
+      }
+     
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="logo">
+        <img width="60" height="60" src="{% static 'images/favicon.png' %}" />
+        <b id="clog">CareForYou</b>
+      </div>
+      <label for="btn" class="icon">
+        <span class="fa fa-bars"></span>
+      </label>
+      <input type="checkbox" id="btn" />
+      <ul>
+        <li><a href="{% url 'adminhome' %}">Home</a></li>
+        <li>
+          <label for="btn-1" class="show">Doctors</label>
+          <a href="#">Doctors</a>
+          <input type="checkbox" id="btn-1" />
+          <ul>
+            <li><a href="{% url 'viewdoctor' %}">ViewDoctors</a></li>
+            <li><a href="{% url 'adddoctor' %}">AddDoctors</a></li>
+          </ul>
+        </li>
+        <li><a href="{% url 'totalappoints' %}">Appointments</a></li>
+        <li><a href="{% url 'adminlogout' %}">Logout</a></li>
+      </ul>
+    </nav>
+    <script>
+      $(".icon").click(function () {
+        $("span").toggleClass("cancel");
+      });
+    </script>
+    <br /><br /><br/><br/>
+    <div class="container">
+      <div class="row cust-grid">
+        <div class="col-md-4 col-xl-5 cust-grid-col">
+          <div class="card bg-c-pink order-card">
+            <div class="card-block">
+              <h2 class="m-b-20">
+                <a href="{% url 'totalusers' %}" style="text-decoration: none; font-weight:bold; color: black"
+                  >TOTAL USERS</a
+                >
+              </h6>
+              <h2 class="text-right">
+                <i class="fa-solid fa-user f-left"></i><div style="display:inline;font-weight:bold;font-size:60px;">{{total_users}}</div>
+              </h2>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-xl-5 cust-grid-col">
+          <div class="card bg-c-yellow order-card">
+            <div class="card-block">
+              <h2 class="m-b-20">
+                <a href="{% url 'viewdoctor' %}" style="text-decoration: none; font-weight:bold; color: black"
+                  >TOTAL DOCTORS</a
+                >
+              </h6>
+              <h2 class="text-right">
+                <i class="fa-solid fa-user-doctor f-left"></i><div style="display:inline;font-weight:bold;font-size:60px;">{{total_doctors}}</div>
+              </h2>
+            </div>
+          </div>
+        </div>
+      <div class="col-md-4 col-xl-5">
+          <div class="card bg-c-green order-card cust-grid-col">
+            <div class="card-block">
+              <h2 class="m-b-20">
+                <a href="{% url 'totalappoints' %}" style="text-decoration: none; font-weight:bold; color: black"
+                  >TOTAL APPOINTMENTS</a
+                >
+              </h6>
+              <h2 class="text-right">
+                <i class="fa fa-list f-left"></i><div style="display:inline;font-weight:bold;font-size:60px;">{{total_appoint}}</div>
+              </h2>
+            </div>
+          </div>
+        </div>
+        
+         <div class="col-md-4 col-xl-5">
+          <div class="card bg-c-red order-card cust-grid-col">
+            <div class="card-block">
+              <h2 class="m-b-20">
+                <a href="{% url 'totalfeedback' %}" style="text-decoration: none; font-weight:bold; color: black"
+                  >TOTAL FEEDBACKS</a
+                >
+              </h6>
+              <h2 class="text-right">
+                <i class="fas fa-comment f-left"></i><div style="display:inline;font-weight:bold;font-size:60px;">{{total_feedback}}</div>
+              </h2>
+            </div>
+          </div>
+        </div>
+     
+      </div>
+    </div> 
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.0.4/popper.js"></script>
+   <script src="http://netdna.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+  </body>
+</html>

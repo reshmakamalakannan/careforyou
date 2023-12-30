@@ -1,0 +1,304 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="icon"
+      href="{% static 'images/favicon.png' %}"
+      type="image/png"
+      sizes="128x128"
+    />
+    <title>CareForYou</title>
+    <style>
+      #up {
+        position: fixed;
+        right: 10px;
+        bottom: 10px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: #e62739;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+        color: #ffffff;
+        border: none;
+        outline: none;
+        cursor: pointer;
+      }
+      :root {
+        --background: #e39382;
+        --primary: #b27a43;
+        --secondary: #ff775b;
+        --darkgray: rgb(78, 78, 78);
+
+        --fontBody: "Open Sans", sans-serif;
+      }
+      body {
+        background-image: url('data:image/svg+xml,%3Csvg width="52" height="26" viewBox="0 0 52 26" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%239C92AC" fill-opacity="0.4"%3E%3Cpath d="M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z" /%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+        background-color: var(--background);
+        overflow-x: hidden;
+      }
+      section {
+        left: 50%;
+        top: 70%;
+        position: static;
+        transform: translate(20%);
+        display: block;
+        box-sizing: border-box;
+        font-family: var(--fontBody);
+        background-color: var(--background);
+        background-image: url('data:image/svg+xml,%3Csvg width="52" height="26" viewBox="0 0 52 26" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%239C92AC" fill-opacity="0.4"%3E%3Cpath d="M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z" /%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+      }
+
+      .blog-entry {
+        margin-bottom: 50px;
+        width: 900px;
+        height: 220px;
+        background-color: white;
+
+        padding-left: 150px;
+        padding-right: 50px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+
+        border-top-right-radius: 250px;
+        border-bottom-right-radius: 250px;
+      }
+
+      .blog-img {
+        width: 230px;
+        height: 230px;
+        position: absolute;
+        margin-top: -20px;
+        margin-left: -275px;
+        border-radius: 100%;
+        box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+        -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+        background-size: cover;
+      }
+
+      .blog-entry:hover .content-date {
+        opacity: 0.75;
+      }
+
+      .blog-entry .blog-content span {
+        display: block;
+        text-align: justify;
+      }
+
+      .blog-entry:hover .content-title {
+        color: var(--primary);
+      }
+
+      .content-text {
+        margin-top: 20px;
+      }
+
+      @media all and (max-width: 968px) {
+        h1 {
+          font-size: 35px;
+        }
+        .responsive {
+          width: 100%;
+          height: auto;
+        }
+        .blog-entry {
+          width: 380px;
+          height: 800px;
+          font-size: 15px;
+          border-top-right-radius: 130px;
+          border-bottom-right-radius: 130px;
+        }
+        .blog-img {
+          width: 210px;
+          height: 235px;
+          position: absolute;
+          margin-top: 290px;
+          margin-left: -220px;
+          border-radius: 100%;
+          box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+          -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+          -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+          background-size: cover;
+        }
+      }
+      img:hover {
+        transform: scale(1.08);
+        cursor: pointer;
+      }
+    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <!--For navbar-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <!--for up arrow-->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--For footer icons-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <nav>
+      <div class="logo">
+        <img width="60" height="60" src="{% static 'images/favicon.png' %}" />
+        <b id="clog">CareForYou</b>
+      </div>
+      <label for="btn" class="icon">
+        <span class="fa fa-bars"></span>
+      </label>
+      <input type="checkbox" id="btn" />
+      <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'about' %}">About</a></li>
+        <li><a href="{% url 'healthy_living' %}">Healthy Living</a></li>
+        <li>
+          <label for="btn-1" class="show">Login</label>
+          <a href="#">Login</a>
+          <input type="checkbox" id="btn-1" />
+          <ul>
+            <li><a href="{% url 'adminlogin' %}">Admin Login</a></li>
+            <li><a href="{% url 'userlogin' %}">User Login</a></li>
+          </ul>
+        </li>
+        <table>
+          <a class="s1" href="#"
+            ><img
+              width="30"
+              height="30"
+              src="{% static 'images/facebook.webp' %}"
+          /></a>
+          <a class="s1" href="#"
+            ><img width="30" height="30" src="{% static 'images/insta.jpg' %}"
+          /></a>
+          <a class="s1" href="#"
+            ><img
+              width="30"
+              height="30"
+              src="{% static 'images/twitter.png' %}"
+          /></a>
+          <a class="s1" href="#"
+            ><img
+              width="30"
+              height="30"
+              src="{% static 'images/youtube.png' %}"
+          /></a>
+        </table>
+      </ul>
+    </nav>
+
+    <script>
+      $(".icon").click(function () {
+        $("span").toggleClass("cancel");
+      });
+    </script>
+
+    <br />
+ <center>
+      <h1>Menstrual Hygiene Is Key in Promoting Good Health</h1><br/>
+      <img src= "{% static 'images/healthy_living/menstrualhygiene.jpg' %}" class="responsive"/>
+      </center>
+      <br/>
+    <section>
+<div class="blog-entry">
+    <img class="blog-img" src= "{% static 'images/healthy_living/lightcloth.jpeg' %}" alt="">
+    <div class="blog-content">
+      <div class="content-title"><h1>Wear lightweight, breathable clothing</h1></div>
+      <span class="content-text">From picking the right underwear to avoiding leakage, there are a lot of factors to consider when it comes to finding the perfect period outfit.Wear lightweight, breathable clothing (such as cotton underwear).
+         Tight fabrics can trap moisture and heat, allowing germs to thrive.
+         Cotton pieces are durable, comfy, and airy. These pieces let your skin breathe, and never cling. Whatever you decide to do, no matter the weather</span>
+    </div>
+    </div>
+  </div>
+  <div class="blog-entry">
+    <img class="blog-img" src= "{% static 'images/healthy_living/product.jpg' %}" alt="">
+    <div class="blog-content">
+      <div class="content-title"><h1>Change your menstrual products regularly.</h1></div>
+      <span class="content-text">Trapped moisture provides a breeding ground for bacteria and fungi.
+         Wearing a pad or period underwear for too long can lead to a rash or an infection. 
+         Cotton is a highly breathable fiber that absorbs a decent amount of moisture and has a fairly open weave which allows air to circulate through the fabric. It’s safe to say that cotton is the world’s favorite natural fiber.</span>
+    </div>
+    </div>
+  </div>
+  <div class="blog-entry">
+    <img class="blog-img" src= "{% static 'images/healthy_living/clean.jpg' %}">
+    <div class="blog-content">
+      <div class="content-title"><h1>Keep your genital area clean</h1></div>
+      <span class="content-text"> Wash the outside of your vagina and bottom every day. When you go to the bathroom, wipe from the front of your body toward the back, not the other way. Use only water to rinse your vulva. The vagina is a self-cleaning organ. Changing the natural pH balance of your vagina by washing or using chemicals to cleanse out the vagina can be harmful and may result in yeast infection or bacterial vaginosis. </span>
+    </div>
+    </div>
+  </div>
+
+  <div class="blog-entry">
+    <img class="blog-img" src= "{% static 'images/healthy_living/pad.jpg' %}">
+    <div class="blog-content">
+      <div class="content-title"><h1>Use unscented tampons and pads</h1></div>
+      <span class="content-text"> Unscented is best because the chemicals used in scented products can cause irritation. Also, there's no need to mask the natural odors that happen. In most cases, any odor is mild and not offensive. If you do notice a smell that seems wrong or bad to you, you might want to talk to your doctor about it. Some odors are signs of infections. </span>
+    </div>
+    </div>
+  </div>
+
+  <div class="blog-entry">
+    <img class="blog-img" src= "{% static 'images/healthy_living/healthcheck.jpg' %}">
+    <div class="blog-content">
+      <div class="content-title"><h1>Visit a healthcare provider for your annual check-up.</h1></div>
+      <span class="content-text"> Visit a healthcare provider for your annual check-up. An annual well-woman exam is a full check-up includes a pap smear, a pelvic exam, and a breast exam. These exams are essential for good reproductive health as they can catch early signs of cancer or other health issues. </span>
+    </div>
+    </div>
+  </div>
+</section>
+    <br />
+    <div class="footer">
+      <div class="box-container">
+        <div class="box">
+          <h3>Contact Info</h3>
+          <p><i class="fas fa-map-marker-alt"></i>Chennai-600020</p>
+          <p><i class="fas fa-envelope"></i>car4u@gmail.com</p>
+          <p><i class="fas fa-phone"></i>+444-555-666</p>
+          <p><i class="fas fa-phone"></i>+111-222-333</p>
+        </div>
+        <div class="box">
+          <h3>Branch Location</h3>
+          <a href="#">India</a>
+          <a href="#">USA</a>
+          <a href="#">France</a>
+          <a href="#">Russia</a>
+        </div>
+        <div class="box">
+          <h3>Quick Links</h3>
+          <a href="#">Home</a>
+          <a href="#">About</a>
+          <a href="#">Healthy Living</a>
+          <a href="#">Login</a>
+        </div>
+        <div class="box">
+          <h3>Follow Us</h3>
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+          <a href="#">Twitter</a>
+          <a href="#">Youtube</a>
+        </div>
+      </div>
+      <h1 class="credit">
+        © Copyright 2023 - CareForYou. All Rights Reserved.
+      </h1>
+    </div>
+    <button id="up"><i class="material-icons">arrow_upward</i></button>
+    <script>
+      const up = document.querySelector("#up");
+      up.addEventListener("click", function () {
+        $("html,body").animate({ scrollTop: 0 }, "slow");
+      });
+    </script>
+  </body>
+</html>

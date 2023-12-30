@@ -1,0 +1,261 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="icon"
+      href="{% static 'images/favicon.png' %}"
+      type="image/png"
+      sizes="128x128"
+    />
+    <title>CareForYou</title>
+    <style>
+      body {
+        background-image: url("{% static 'images/bg.jpg' %}");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+      }
+
+      @media all and (max-width: 968px) {
+        .responsive {
+          width: 100%;
+          height: auto;
+        }
+      }
+      .container {
+        position: relative;
+        width: 400px;
+        background: #111;
+        padding: 20px 30px;
+        border: 1px solid #444;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+      .container .star-widget input {
+        display: none;
+      }
+      .star-widget label {
+        font-size: 40px;
+        color: #444;
+        padding: 10px;
+        float: right;
+        transition: all 0.2s ease;
+      }
+      input:not(:checked) ~ label:hover,
+      input:not(:checked) ~ label:hover ~ label {
+        color: #fd4;
+      }
+      input:checked ~ label {
+        color: #fd4;
+      }
+      input#rate-5:checked ~ label {
+        color: #fe7;
+        text-shadow: 0 0 20px #952;
+      }
+      #rate-1:checked ~ form header:before {
+        content: "I am feeling very sad";
+      }
+      #rate-2:checked ~ form header:before {
+        content: "I don't like it ";
+      }
+      #rate-3:checked ~ form header:before {
+        content: "It is awesome ";
+      }
+      #rate-4:checked ~ form header:before {
+        content: "I just like it ";
+      }
+      #rate-5:checked ~ form header:before {
+        content: "I just love it ";
+      }
+      form header {
+        width: 100%;
+        font-size: 25px;
+        color: #fe7;
+        font-weight: 500;
+        margin: 5px 0 20px 0;
+        text-align: center;
+        transition: all 0.2s ease;
+      }
+      form .textarea {
+        height: 100px;
+        width: 100%;
+        overflow: hidden;
+      }
+      form .textarea textarea {
+        height: 100%;
+        width: 100%;
+        outline: none;
+        color: #eee;
+        border: 1px solid #333;
+        background: #222;
+        padding: 10px;
+        font-size: 17px;
+        resize: none;
+      }
+      .textarea textarea:focus {
+        border-color: #444;
+      }
+      form .btn {
+        height: 45px;
+        width: 100%;
+        margin: 15px 0;
+      }
+      form .btn button {
+        height: 100%;
+        width: 100%;
+        border: 1px solid #444;
+        outline: none;
+        background: #222;
+        color: #999;
+        font-size: 17px;
+        font-weight: 500;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      form .btn button:hover {
+        background: #1b1b1b;
+      }
+    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'style2.css' %}" />
+    <!--For navbar-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <!--For footer icons-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <nav>
+      <div class="logo">
+        <img width="60" height="60" src="{% static 'images/favicon.png' %}" />
+        <b id="clog">CareForYou</b>
+      </div>
+      <label for="btn" class="icon">
+        <span class="fa fa-bars"></span>
+      </label>
+      <input type="checkbox" id="btn" />
+      <ul>
+        <li><a href="{% url 'userhome' %}">Home</a></li>
+        <li>
+          <label for="btn-1" class="show">Predict Disease</label>
+          <a href="#">Predict Disease</a>
+          <input type="checkbox" id="btn-1" />
+          <ul>
+            <li><a href="{% url 'strokepredict' %}">Stroke</a></li>
+            <li><a href="{% url 'diabetespredict' %}">Diabetes</a></li>
+            <li><a href="{% url 'lungcancer' %}">Lung Cancer</a></li>
+            <li><a href="{% url 'heartpredict' %}">Heart</a></li>
+          </ul>
+        </li>
+        <li>
+          <label for="btn-2" class="show">Appointments</label>
+          <a href="#">Appointments</a>
+          <input type="checkbox" id="btn-2" />
+          <ul>
+            <li><a href="{% url 'bookappoint' %}">Book Appointment</a></li>
+            <li><a href="{% url 'myappoints' %}">View Appointment</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="{% url 'feedback' %}">Feedback</a>
+        </li>
+        {% if current_user %}
+        <li>
+          <label for="btn-3" class="show">Hello {{current_user}}</label>
+          <a href="#">Hello {{current_user}}</a>
+          <input type="checkbox" id="btn-3" />
+          <ul>
+            <li><a href="{% url 'editprofile' %}">Edit Profile</a></li>
+            <li><a href="{% url 'userlogout' %}">Logout</a></li>
+          </ul>
+        </li>
+        {% endif %}
+      </ul>
+    </nav>
+
+    <script>
+      $(".icon").click(function () {
+        $("span").toggleClass("cancel");
+      });
+    </script>
+
+    <br />
+    <center>
+      <img
+        src="{% static 'images/feed.jpg' %}"
+        width="90%"
+        class="responsive"
+      /><br /><br />
+      <div class="container">
+        <div class="star-widget">
+          <form method="POST">
+            {% csrf_token %}
+            <header></header>
+            <input type="radio" name="rate" id="rate-5" value="5" required />
+            <label for="rate-5" class="fas fa-star"></label>
+            <input type="radio" name="rate" id="rate-4" value="4" required />
+            <label for="rate-4" class="fas fa-star"></label>
+            <input type="radio" name="rate" id="rate-3" value="3" required />
+            <label for="rate-3" class="fas fa-star"></label>
+            <input type="radio" name="rate" id="rate-2" value="2" required />
+            <label for="rate-2" class="fas fa-star"></label>
+            <input type="radio" name="rate" id="rate-1" value="1" required />
+            <label for="rate-1" class="fas fa-star"></label>
+            <div class="textarea">
+              <textarea
+                cols="30"
+                placeholder="Describe your experience.."
+                name="f_message"
+                id="f_message"
+                required
+              ></textarea>
+            </div>
+            <div class="btn">
+              <button type="submit" onclick="return chkrat()">
+                Submit your feedback
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <br /><br />
+    </center>
+    <script>
+      function chkrat() {
+        if (
+          document.getElementById("rate-1").checked !== true &&
+          document.getElementById("rate-2").checked !== true &&
+          document.getElementById("rate-3").checked !== true &&
+          document.getElementById("rate-4").checked !== true &&
+          document.getElementById("rate-5").checked !== true
+        ) {
+          swal("Invalid", "Please fill all the fields", "error");
+          return false;
+        } else if (document.getElementById("f_message").value == "") {
+          swal("Invalid", "Please fill all the fields", "error");
+          return false;
+        } else {
+          swal("Thank you", "Thank you for your valuable feedback", "success");
+          return true;
+        }
+      }
+    </script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <div class="footer">
+      <h1 class="credit">
+        © Copyright 2023 - CareForYou. All Rights Reserved.
+      </h1>
+    </div>
+  </body>
+</html>

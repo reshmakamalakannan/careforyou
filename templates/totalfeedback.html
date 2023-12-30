@@ -1,0 +1,211 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="icon"
+      href="{% static 'images/favicon.png' %}"
+      type="image/png"
+      sizes="128x128"
+    />
+    <title>CareForYou</title>
+    <style>
+      @media all and (max-width: 968px) {
+        .responsive {
+          width: 100%;
+          height: auto;
+        }
+      }
+      img:hover {
+        transform: scale(1.08);
+        cursor: pointer;
+      }
+    </style>
+    <style>
+      .table-container {
+        display: flex;
+        justify-content: center;
+        width: 80%;
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 5px;
+      }
+      table :hover {
+        cursor: pointer;
+      }
+
+      table {
+        width: 100%;
+        box-shadow: 15px 15px #0000000d;
+        border-collapse: collapse;
+      }
+
+      tr:nth-of-type(odd) {
+        background-color: #006cc6;
+        color: #fff;
+      }
+      tr:nth-of-type(even) {
+        background-color: #fff;
+        color: #333;
+      }
+
+      th {
+        background-color: #dc005a;
+        color: #fff;
+        font-weight: 800;
+        font-size: 20px;
+      }
+
+      td,
+      th {
+        padding: 12px;
+        border: 1px solid #ccc;
+        text-align: center;
+      }
+      .tablebtn {
+        color: #fff;
+        background-color: #2e9c81;
+        font-size: 18px;
+        padding: 5px 8px;
+        border: none;
+        border-radius: 2px;
+        transition: all 0.3s ease;
+        text-decoration: none;
+      }
+      .tablebtn:hover {
+        background-color: #2e9c81;
+        color: #006cc6;
+        text-decoration: underline;
+      }
+
+      @media only screen and (max-width: 768px),
+        (min-device-width: 768px) and (max-device-width: 992px) {
+        .table-container {
+          width: 95%;
+          background: transparent;
+        }
+
+        table,
+        thead,
+        tbody,
+        th,
+        td,
+        tr {
+          display: block;
+        }
+
+        thead tr {
+          position: absolute;
+          top: -9999px;
+          left: -9999px;
+        }
+
+        tr {
+          border: 1px solid #ccc;
+          margin-bottom: 10px;
+        }
+
+        td {
+          border: none;
+          border-bottom: 1px solid #eee;
+          position: relative;
+          padding-left: 20%;
+          text-align: right;
+        }
+
+        td::before {
+          position: absolute;
+          top: 6px;
+          left: 6px;
+          width: 45%;
+          padding-right: 10px;
+          white-space: nowrap;
+          font-size: 16px;
+          font-weight: 600;
+          text-align: left;
+        }
+
+        td:nth-of-type(1)::before {
+          content: "User Id";
+        }
+
+        td:nth-of-type(2)::before {
+          content: "Rating";
+        }
+
+        td:nth-of-type(3)::before {
+          content: "Feedback";
+        }
+      }
+      body {
+        background-color: #ffc000;
+      }
+    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <!--For navbar-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <nav>
+      <div class="logo">
+        <img width="60" height="60" src="{% static 'images/favicon.png' %}" />
+        <b id="clog">CareForYou</b>
+      </div>
+      <label for="btn" class="icon">
+        <span class="fa fa-bars"></span>
+      </label>
+      <input type="checkbox" id="btn" />
+      <ul>
+        <li><a href="{% url 'adminhome' %}">Home</a></li>
+        <li>
+          <label for="btn-1" class="show">Doctors</label>
+          <a href="#">Doctors</a>
+          <input type="checkbox" id="btn-1" />
+          <ul>
+            <li><a href="{% url 'viewdoctor' %}">ViewDoctors</a></li>
+            <li><a href="{% url 'adddoctor' %}">AddDoctors</a></li>
+          </ul>
+        </li>
+        <li><a href="{% url 'totalappoints' %}">Appointments</a></li>
+        <li><a href="{% url 'adminlogout' %}">Logout</a></li>
+      </ul>
+    </nav>
+    <script>
+      $(".icon").click(function () {
+        $("span").toggleClass("cancel");
+      });
+    </script>
+    <br />
+    <center>
+      <h1>FEEDBACK DETAILS</h1>
+      <br />
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>User Id</th>
+              <th>Rating</th>
+              <th>Feedback</th>
+            </tr>
+          </thead>
+          <tbody>
+            {%for result in data%}
+            <tr>
+              <td>{{result.u_id}}</td>
+              <td>{{result.rating}}</td>
+              <td>{{result.f_message}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <br /><br />
+    </center>
+  </body>
+</html>

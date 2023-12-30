@@ -1,0 +1,255 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CareForYou</title>
+    <link
+      rel="icon"
+      href="{% static 'images/favicon.png' %}"
+      type="image/png"
+      sizes="128x128"
+    />
+    <style>
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+      ::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-image: linear-gradient(#f20bd6, #20bcf2);
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+      }
+      ::-webkit-scrollbar-track {
+        border-radius: 10px;
+        background-color: #de95c6;
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.4);
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #89f16f;
+      }
+      body {
+        margin-bottom: 40px;
+        padding: 0;
+        background: url("{% static 'images/healthbg.jpeg' %}")
+          no-repeat;
+        height: 100vh;
+        font-family: sans-serif;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        color: white;
+        font-weight: bold;
+      }
+      input {
+        border: 5px solid blue;
+        color: black;
+      }
+      select {
+        border: 5px solid blue;
+        width: 183px;
+      }
+      input[type="submit"] {
+        padding-right: 20px;
+        padding-left: 20px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        background-color: gold;
+        color: black;
+        font-weight: bold;
+        border: none;
+      }
+      table {
+        border-collapse: separate;
+        border-spacing: 0 1em;
+      }
+      .close {
+        position: absolute;
+        right: 32px;
+        top: 32px;
+        width: 32px;
+        height: 32px;
+        background-color: white;
+        border: 1px solid black;
+        color: black;
+      }
+      .close:before,
+      .close:after {
+        position: absolute;
+        left: 15px;
+        content: " ";
+        height: 33px;
+        width: 2px;
+        background-color: #333;
+      }
+      .close:before {
+        transform: rotate(45deg);
+      }
+      .close:after {
+        transform: rotate(-45deg);
+      }
+      @media all and (max-width: 968px) {
+        .close {
+          top: 10px;
+          right: 10px;
+        }
+      }
+      .hist {
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="{% url 'userhome' %}" class="close"></a>
+    <center>
+      <h1>Stroke Disease Prediction</h1>
+      <form action="strokeresult" method="POST">
+        {% csrf_token %}
+        <table>
+          <tr>
+            <td><label>Gender</label></td>
+            <td>
+              <input type="radio" name="gender" value="1" required />Male
+              <input type="radio" name="gender" value="0" />Female
+              <input type="radio" name="gender" value="2" />Others
+            </td>
+          </tr>
+
+          <tr>
+            <td><label for="age">What is your Age?</label></td>
+            <td>
+              <input type="number" name="age" autocomplete="off" required />
+            </td>
+          </tr>
+
+          <tr>
+            <td><label for="hypertension">Do you have Hypertension?</label></td>
+            <td>
+              <input type="radio" name="hypertension" value="1" required />Yes
+              <input type="radio" name="hypertension" value="0" required />No
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="heart_disease">Do you have Heart Disease?</label>
+            </td>
+            <td>
+              <input type="radio" name="heart_disease" value="1" required />Yes
+              <input type="radio" name="heart_disease" value="0" required />No
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="ever_married">Marital Status</label>
+            </td>
+            <td>
+              <input
+                type="radio"
+                name="ever_married"
+                value="1"
+                required
+              />Married
+              <input type="radio" name="ever_married" value="0" required />Not
+              Married
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="work_type">What is your work type?</label>
+            </td>
+            <td>
+              <select id="work_type" name="work_type" required="">
+                <option selected disabled="true" value="">
+                  Select your work type
+                </option>
+                <option value="0">Government Job</option>
+                <option value="2">Private Job</option>
+                <option value="3">Self Employed</option>
+                <option value="4">Children</option>
+                <option value="1">Never Worked</option>
+              </select>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <label for="Residence_type">What is your Residence type?</label>
+            </td>
+            <td>
+              <select id="Residence_type" name="Residence_type" required="">
+                <option selected disabled="true" value="">Select</option>
+                <option value="0">Rural</option>
+                <option value="1">Urban</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="avg_glucose_level"
+                >Enter your average glucose level</label
+              >
+            </td>
+            <td>
+              <input
+                type="number"
+                step="any"
+                name="avg_glucose_level"
+                autocomplete="off"
+                required
+              />
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <label for="weight">Enter your weight in kg</label>
+            </td>
+            <td>
+              <input
+                type="number"
+                step="any"
+                name="weight"
+                autocomplete="off"
+                required
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="height">Enter your height in cm</label>
+            </td>
+            <td>
+              <input
+                type="number"
+                step="any"
+                name="height"
+                autocomplete="off"
+                required
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="smoking_status">How frequently you smoke?</label>
+            </td>
+            <td>
+              <select id="smoking_status" name="smoking_status" required="">
+                <option selected disabled="true" value="">Select</option>
+                <option value="1">Formerly Smoked</option>
+                <option value="2">Never Smoked</option>
+                <option value="3">Smokes</option>
+                <!--option value="0">Unknown</option-->
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" colspan="3">
+              <input type="submit" value="Submit" />
+            </td>
+          </tr>
+        </table>
+      </form>
+      <a href="{% url 'shistory' %}" class="hist"
+        >Check your Previous Prediction History</a
+      >
+    </center>
+  </body>
+</html>

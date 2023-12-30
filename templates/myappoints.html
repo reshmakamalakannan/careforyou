@@ -1,0 +1,322 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="icon"
+      href="{% static 'images/favicon.png' %}"
+      type="image/png"
+      sizes="128x128"
+    />
+    <title>CareForYou</title>
+    <style>
+      body {
+        background-image: url("{% static 'images/bg.jpg' %}");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+      }
+
+      @media all and (max-width: 968px) {
+        .responsive {
+          width: 100%;
+          height: auto;
+        }
+      }
+    </style>
+    <style>
+      .table-container {
+        justify-content: center;
+        width: 100%;
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 5px;
+      }
+      table :hover {
+        cursor: pointer;
+      }
+
+      table {
+        width: 100%;
+        box-shadow: 15px 15px #0000000d;
+        border-collapse: collapse;
+      }
+
+      tr:nth-of-type(odd) {
+        background-color: #006cc6;
+        color: #fff;
+      }
+      tr:nth-of-type(even) {
+        background-color: #fff;
+        color: #333;
+      }
+
+      th {
+        background-color: #dc005a;
+        color: #fff;
+        font-weight: 800;
+        font-size: 16px;
+      }
+
+      td,
+      th {
+        padding: 12px;
+        border: 1px solid #ccc;
+        text-align: center;
+      }
+      .tablebtn {
+        color: #fff;
+        background-color: #2e9c81;
+        font-size: 18px;
+        padding: 5px 8px;
+        border: none;
+        border-radius: 2px;
+        transition: all 0.3s ease;
+        text-decoration: none;
+      }
+      .tablebtn:hover {
+        background-color: #2e9c81;
+        color: #006cc6;
+        text-decoration: underline;
+      }
+
+      @media only screen and (max-width: 768px),
+        (min-device-width: 768px) and (max-device-width: 992px) {
+        .table-container {
+          width: 95%;
+          background: transparent;
+        }
+
+        table,
+        thead,
+        tbody,
+        th,
+        td,
+        tr {
+          display: block;
+        }
+
+        thead tr {
+          position: absolute;
+          top: -9999px;
+          left: -9999px;
+        }
+
+        tr {
+          border: 1px solid #ccc;
+          margin-bottom: 10px;
+        }
+
+        td {
+          border: none;
+          border-bottom: 1px solid #eee;
+          position: relative;
+          padding-left: 20%;
+          text-align: right;
+        }
+
+        td::before {
+          position: absolute;
+          top: 6px;
+          left: 6px;
+          width: 45%;
+          padding-right: 10px;
+          white-space: nowrap;
+          font-size: 16px;
+          font-weight: 600;
+          text-align: left;
+        }
+
+        td:nth-of-type(1)::before {
+          content: "Appo Id";
+        }
+
+        td:nth-of-type(2)::before {
+          content: "Appo Date";
+        }
+
+        td:nth-of-type(3)::before {
+          content: "Appo Time";
+        }
+
+        td:nth-of-type(4)::before {
+          content: "Patient Name";
+        }
+
+        td:nth-of-type(5)::before {
+          content: "Patient Age";
+        }
+
+        td:nth-of-type(6)::before {
+          content: "Symptoms";
+        }
+
+        td:nth-of-type(7)::before {
+          content: "Phone Number";
+        }
+
+        td:nth-of-type(8)::before {
+          content: "Doc Id";
+        }
+
+        td:nth-of-type(9)::before {
+          content: "Doc Name";
+        }
+
+        td:nth-of-type(10)::before {
+          content: "Specialist";
+        }
+
+        td:nth-of-type(11)::before {
+          content: "Doc Phno";
+        }
+
+        td:nth-of-type(12)::before {
+          content: "Doc Addr";
+        }
+
+        td:nth-of-type(13)::before {
+          content: "Action";
+        }
+      }
+      body {
+        background-color: #ffc000;
+      }
+    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'style2.css' %}" />
+    <!--For navbar-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <!--For footer icons-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <nav>
+      <div class="logo">
+        <img width="60" height="60" src="{% static 'images/favicon.png' %}" />
+        <b id="clog">CareForYou</b>
+      </div>
+      <label for="btn" class="icon">
+        <span class="fa fa-bars"></span>
+      </label>
+      <input type="checkbox" id="btn" />
+      <ul>
+        <li><a href="{% url 'userhome' %}">Home</a></li>
+        <li>
+          <label for="btn-1" class="show">Predict Disease</label>
+          <a href="#">Predict Disease</a>
+          <input type="checkbox" id="btn-1" />
+          <ul>
+            <li><a href="{% url 'strokepredict' %}">Stroke</a></li>
+            <li><a href="{% url 'diabetespredict' %}">Diabetes</a></li>
+            <li><a href="{% url 'lungcancer' %}">Lung Cancer</a></li>
+            <li><a href="{% url 'heartpredict' %}">Heart</a></li>
+          </ul>
+        </li>
+        <li>
+          <label for="btn-2" class="show">Appointments</label>
+          <a href="#">Appointments</a>
+          <input type="checkbox" id="btn-2" />
+          <ul>
+            <li><a href="{% url 'bookappoint' %}">Book Appointment</a></li>
+            <li><a href="{% url 'myappoints' %}">View Appointment</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="{% url 'feedback' %}">Feedback</a>
+        </li>
+        {% if current_user %}
+        <li>
+          <label for="btn-3" class="show">Hello {{current_user}}</label>
+          <a href="#">Hello {{current_user}}</a>
+          <input type="checkbox" id="btn-3" />
+          <ul>
+            <li><a href="{% url 'editprofile' %}">Edit Profile</a></li>
+            <li><a href="{% url 'userlogout' %}">Logout</a></li>
+          </ul>
+        </li>
+        {% endif %}
+      </ul>
+    </nav>
+
+    <script>
+      $(".icon").click(function () {
+        $("span").toggleClass("cancel");
+      });
+    </script>
+    <br />
+    <center>
+      <img src="{% static 'images/myappoint.PNG' %}" class="responsive" />
+    </center>
+    <br />
+    <center>
+      <h1>APPOINTMENTS DETAILS</h1>
+      <br />
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Appo Id</th>
+              <th>Appo Date</th>
+              <th>Appo Time</th>
+              <th>Patient Name</th>
+              <th>Patient Age</th>
+              <th>Symptoms</th>
+              <th>Phone Number</th>
+              <th>Doc Id</th>
+              <th>Doc Name</th>
+              <th>Specialist</th>
+              <th>Doc Phno</th>
+              <th>Doc Addr</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {%for result in data%}
+            <tr>
+              <td>{{result.appo_id}}</td>
+              <td>{{result.appo_date}}</td>
+              <td>{{result.appo_time}}</td>
+              <td>{{result.pat_name}}</td>
+              <td>{{result.pat_age}}</td>
+              <td>{{result.pat_sympt}}</td>
+              <td>{{result.pat_phno}}</td>
+              <td>{{result.doc_id}}</td>
+              <td>{{result.doc_name}}</td>
+              <td>{{result.doc_specialist}}</td>
+              <td>{{result.doc_phno}}</td>
+              <td>{{result.doc_addr}}</td>
+              <td>
+                <a href="editappoint/{{result.appo_id}}" class="tablebtn"
+                  >Reschedule</a
+                >
+                <a
+                  href="delappoint/{{result.appo_id}}"
+                  onclick="return confirm('Are u sure you want to delete?')"
+                  class="tablebtn"
+                  >Delete</a
+                >
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </center>
+
+    <br />
+
+    <div class="footer">
+      <h1 class="credit">
+        © Copyright 2023 - CareForYou. All Rights Reserved.
+      </h1>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,367 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="icon"
+      href="{% static 'images/favicon.png' %}"
+      type="image/png"
+      sizes="128x128"
+    />
+    <title>CareForYou</title>
+    <style>
+      @media all and (max-width: 968px) {
+        .responsive {
+          width: 100%;
+          height: auto;
+        }
+      }
+      img:hover {
+        transform: scale(1.08);
+        cursor: pointer;
+      }
+    </style>
+    <style>
+      .table-container {
+        justify-content: center;
+        width: 100%;
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 5px;
+      }
+      table :hover {
+        cursor: pointer;
+      }
+
+      table {
+        width: 100%;
+        box-shadow: 15px 15px #0000000d;
+        border-collapse: collapse;
+      }
+
+      tr:nth-of-type(odd) {
+        background-color: #006cc6;
+        color: #fff;
+      }
+      tr:nth-of-type(even) {
+        background-color: #fff;
+        color: #333;
+      }
+
+      th {
+        background-color: #dc005a;
+        color: #fff;
+        font-weight: 800;
+        font-size: 16px;
+      }
+
+      td,
+      th {
+        padding: 12px;
+        border: 1px solid #ccc;
+        text-align: center;
+      }
+      .tablebtn {
+        color: #fff;
+        background-color: #2e9c81;
+        font-size: 18px;
+        padding: 5px 8px;
+        border: none;
+        border-radius: 2px;
+        transition: all 0.3s ease;
+        text-decoration: none;
+      }
+      .tablebtn:hover {
+        background-color: #2e9c81;
+        color: #006cc6;
+        text-decoration: underline;
+      }
+
+      @media only screen and (max-width: 768px),
+        (min-device-width: 768px) and (max-device-width: 992px) {
+        .table-container {
+          width: 95%;
+          background: transparent;
+        }
+
+        table,
+        thead,
+        tbody,
+        th,
+        td,
+        tr {
+          display: block;
+        }
+
+        thead tr {
+          position: absolute;
+          top: -9999px;
+          left: -9999px;
+        }
+
+        tr {
+          border: 1px solid #ccc;
+          margin-bottom: 10px;
+        }
+
+        td {
+          border: none;
+          border-bottom: 1px solid #eee;
+          position: relative;
+          padding-left: 20%;
+          text-align: right;
+        }
+
+        td::before {
+          position: absolute;
+          top: 6px;
+          left: 6px;
+          width: 45%;
+          padding-right: 10px;
+          white-space: nowrap;
+          font-size: 16px;
+          font-weight: 600;
+          text-align: left;
+        }
+
+        td:nth-of-type(1)::before {
+          content: "Appo Id";
+        }
+
+        td:nth-of-type(2)::before {
+          content: "Appo Date";
+        }
+
+        td:nth-of-type(3)::before {
+          content: "Appo Time";
+        }
+
+        td:nth-of-type(4)::before {
+          content: "Patient Name";
+        }
+
+        td:nth-of-type(5)::before {
+          content: "Patient Age";
+        }
+
+        td:nth-of-type(6)::before {
+          content: "Symptoms";
+        }
+
+        td:nth-of-type(7)::before {
+          content: "Phone Number";
+        }
+
+        td:nth-of-type(8)::before {
+          content: "Doc Id";
+        }
+
+        td:nth-of-type(9)::before {
+          content: "Doc Name";
+        }
+
+        td:nth-of-type(10)::before {
+          content: "Specialist";
+        }
+
+        td:nth-of-type(11)::before {
+          content: "Doc Phno";
+        }
+
+        td:nth-of-type(12)::before {
+          content: "Doc Addr";
+        }
+
+        td:nth-of-type(13)::before {
+          content: "User Id";
+        }
+      }
+      body {
+        background-color: #ffc000;
+      }
+      .button-61 {
+        background-color: indigo;
+        align-items: center;
+        appearance: none;
+        border-radius: 4px;
+        border-style: none;
+        box-shadow: rgba(0, 0, 0, 0.2) 0 3px 1px -2px,
+          rgba(0, 0, 0, 0.14) 0 2px 2px 0, rgba(0, 0, 0, 0.12) 0 1px 5px 0;
+        box-sizing: border-box;
+        color: #fff;
+        cursor: pointer;
+        display: inline-flex;
+        font-family: Roboto, sans-serif;
+        font-size: 0.875rem;
+        font-weight: 600;
+        height: 36px;
+        justify-content: center;
+        letter-spacing: 0.0892857em;
+        line-height: normal;
+        min-width: 64px;
+        outline: none;
+        overflow: visible;
+        padding: 0 16px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        text-transform: uppercase;
+        transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: middle;
+        will-change: transform, opacity;
+      }
+
+      .button-61:hover {
+        box-shadow: rgba(0, 0, 0, 0.2) 0 2px 4px -1px,
+          rgba(0, 0, 0, 0.14) 0 4px 5px 0, rgba(0, 0, 0, 0.12) 0 1px 10px 0;
+      }
+
+      .button-61:disabled {
+        background-color: rgba(0, 0, 0, 0.12);
+        box-shadow: rgba(0, 0, 0, 0.2) 0 0 0 0, rgba(0, 0, 0, 0.14) 0 0 0 0,
+          rgba(0, 0, 0, 0.12) 0 0 0 0;
+        color: rgba(0, 0, 0, 0.37);
+        cursor: default;
+        pointer-events: none;
+      }
+      select {
+        width: 250px;
+        height: 40px;
+        border: 3px solid indigo;
+        background: #e79fc4;
+        font-weight: 600;
+        font-size: 0.875rem;
+      }
+      option {
+        background: #e79fc4;
+      }
+      option:disabled {
+        background: #e79fc4;
+      }
+      option:hover {
+        background: indigo;
+        color: white;
+      }
+    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <!--For navbar-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      function searchData() {
+        var input, table, tr, td, filter, i, displaydata;
+        input = document.getElementById("searchddl");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("dattable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+          td = tr[i].getElementsByTagName("td")[1];
+          if (td) {
+            displaydata = td.innerText;
+            if (displaydata.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+            } else {
+              tr[i].style.display = "none";
+            }
+          }
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <nav>
+      <div class="logo">
+        <img width="60" height="60" src="{% static 'images/favicon.png' %}" />
+        <b id="clog">CareForYou</b>
+      </div>
+      <label for="btn" class="icon">
+        <span class="fa fa-bars"></span>
+      </label>
+      <input type="checkbox" id="btn" />
+      <ul>
+        <li><a href="{% url 'adminhome' %}">Home</a></li>
+        <li>
+          <label for="btn-1" class="show">Doctors</label>
+          <a href="#">Doctors</a>
+          <input type="checkbox" id="btn-1" />
+          <ul>
+            <li><a href="{% url 'viewdoctor' %}">ViewDoctors</a></li>
+            <li><a href="{% url 'adddoctor' %}">AddDoctors</a></li>
+          </ul>
+        </li>
+        <li><a href="{% url 'totalappoints' %}">Appointments</a></li>
+        <li><a href="{% url 'adminlogout' %}">Logout</a></li>
+      </ul>
+    </nav>
+    <script>
+      $(".icon").click(function () {
+        $("span").toggleClass("cancel");
+      });
+    </script>
+    <br />
+    <center>
+      <h1>APPOINTMENTS DETAILS</h1>
+      <br />
+      <select id="searchddl" onclick="searchData();">
+        <option selected disabled="true">---Select Date---</option>
+        {% for result in datas %}
+        <option value="{{result.appo_date}}">{{result.appo_date}}</option>
+        {% endfor %}
+      </select>
+      <a href="{% url 'totalappoints' %}" class="button-61" role="button"
+        >Display All Appointments</a
+      >
+      <br />
+      <br />
+      <div class="table-container">
+        <table id="dattable">
+          <thead>
+            <tr>
+              <th>Appo Id</th>
+              <th>Appo Date</th>
+              <th>Appo Time</th>
+              <th>Patient Name</th>
+              <th>Patient Age</th>
+              <th>Symptoms</th>
+              <th>Phone Number</th>
+              <th>Doc Id</th>
+              <th>Doc Name</th>
+              <th>Specialist</th>
+              <th>Doc Phno</th>
+              <th>Doc Addr</th>
+              <th>User Id</th>
+            </tr>
+          </thead>
+          <tbody>
+            {%for result in data%}
+            <tr>
+              <td>{{result.appo_id}}</td>
+              <td>{{result.appo_date}}</td>
+              <td>{{result.appo_time}}</td>
+              <td>{{result.pat_name}}</td>
+              <td>{{result.pat_age}}</td>
+              <td>{{result.pat_sympt}}</td>
+              <td>{{result.pat_phno}}</td>
+              <td>{{result.doc_id}}</td>
+              <td>{{result.doc_name}}</td>
+              <td>{{result.doc_specialist}}</td>
+              <td>{{result.doc_phno}}</td>
+              <td>{{result.doc_addr}}</td>
+              <td>{{result.u_id}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </center>
+    <br /><br />
+  </body>
+</html>

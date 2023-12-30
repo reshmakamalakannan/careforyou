@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CareForYou</title>
+    <link
+      rel="icon"
+      href="{% static 'images/favicon.png' %}"
+      type="image/png"
+      sizes="128x128"
+    />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        background-image: url("{% static 'images/texture.png' %}");
+        width: 430px;
+        margin: 130px auto;
+        position: relative;
+        border: 10px solid black;
+      }
+      h1 {
+        color: indigo;
+        font-weight: 800;
+      }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1>EXPIRED LINK</h1>
+      <h2>
+        The link you followed has expired. If you need to reset your password
+        again, please visit the website
+        <a href="http://127.0.0.1:8000/">http://127.0.0.1:8000</a> and request
+        another reset.
+      </h2>
+    </center>
+  </body>
+</html>

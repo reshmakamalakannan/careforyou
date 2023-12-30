@@ -1,0 +1,127 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CareForYou</title>
+    <link
+      rel="icon"
+      href="{% static 'images/favicon.png' %}"
+      type="image/png"
+      sizes="128x128"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
+    />
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        background-image: url("{% static 'images/reset.png' %}");
+      }
+      .form-gap {
+        padding-top: 130px;
+      }
+      #email {
+        font-size: 15px;
+      }
+      .btn-close {
+        background-color: transparent;
+        border: 0;
+        font-size: 60px;
+        cursor: pointer;
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        border-radius: 50%;
+        transition: all 0.2s ease-in;
+        text-decoration: none;
+      }
+      @media all and (max-width: 968px) {
+        .btn-close {
+          right: 20px;
+          top: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="btn-close" href="{% url 'userlogin' %}">&times;</a>
+    <div class="form-gap"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <div class="text-center">
+                <h3><i class="fa fa-lock fa-4x"></i></h3>
+                <h2 class="text-center">Forgot Password</h2>
+                <p>
+                  Forgotten your password? Enter your email address below, and
+                  we'll email instructions for setting a new one.
+                </p>
+                <div class="panel-body">
+                  <form
+                    id="register-form"
+                    role="form"
+                    autocomplete="off"
+                    class="form"
+                    method="POST"
+                  >
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <div class="input-group">
+                        <span class="input-group-addon"
+                          ><i
+                            class="glyphicon glyphicon-envelope color-blue"
+                          ></i
+                        ></span>
+                        <input
+                          id="email"
+                          name="u_emailid"
+                          placeholder="Enter Email Address"
+                          class="form-control"
+                          type="email"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <input
+                        name="recover-submit"
+                        class="btn btn-lg btn-primary btn-block"
+                        value="Send Email"
+                        type="submit"
+                      />
+                    </div>
+
+                    <input
+                      type="hidden"
+                      class="hide"
+                      name="token"
+                      id="token"
+                      value=""
+                    />
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    {% if messages %} {% for message in messages %} {% if message.tags %}
+    <script>
+      swal("{{message}}", "Email Id not registered", "error");
+    </script>
+    {% endif %} {%endfor%} {% endif %}
+  </body>
+</html>

@@ -1,0 +1,304 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="icon"
+      href="{% static 'images/favicon.png' %}"
+      type="image/png"
+      sizes="128x128"
+    />
+    <title>CareForYou</title>
+    <style>
+      @media all and (max-width: 968px) {
+        .responsive {
+          width: 100%;
+          height: auto;
+        }
+      }
+      img:hover {
+        transform: scale(1.08);
+        cursor: pointer;
+      }
+    </style>
+    <style>
+      .table-container {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 5px;
+      }
+      table :hover {
+        cursor: pointer;
+      }
+
+      table {
+        width: 100%;
+        box-shadow: 15px 15px #0000000d;
+        border-collapse: collapse;
+      }
+
+      tr:nth-of-type(odd) {
+        background-color: #006cc6;
+        color: #fff;
+      }
+      tr:nth-of-type(even) {
+        background-color: #fff;
+        color: #333;
+      }
+
+      th {
+        background-color: #dc005a;
+        color: #fff;
+        font-weight: 800;
+        font-size: 15px;
+      }
+
+      td,
+      th {
+        padding: 4px;
+        border: 1px solid #ccc;
+        text-align: center;
+      }
+      .tablebtn {
+        color: #fff;
+        background-color: #2e9c81;
+        font-size: 18px;
+        padding: 5px 8px;
+        border: none;
+        border-radius: 2px;
+        transition: all 0.3s ease;
+        text-decoration: none;
+      }
+      .tablebtn:hover {
+        background-color: #2e9c81;
+        color: #006cc6;
+        text-decoration: underline;
+      }
+
+      @media only screen and (max-width: 768px),
+        (min-device-width: 768px) and (max-device-width: 992px) {
+        .table-container {
+          width: 95%;
+          background: transparent;
+        }
+
+        table,
+        thead,
+        tbody,
+        th,
+        td,
+        tr {
+          display: block;
+        }
+
+        thead tr {
+          position: absolute;
+          top: -9999px;
+          left: -9999px;
+        }
+
+        tr {
+          border: 1px solid #ccc;
+          margin-bottom: 10px;
+        }
+
+        td {
+          border: none;
+          border-bottom: 1px solid #eee;
+          position: relative;
+          padding-left: 20%;
+          text-align: right;
+        }
+
+        td::before {
+          position: absolute;
+          top: 6px;
+          left: 6px;
+          width: 45%;
+          padding-right: 10px;
+          white-space: nowrap;
+          font-size: 16px;
+          font-weight: 600;
+          text-align: left;
+        }
+
+        td:nth-of-type(1)::before {
+          content: "Date and Time";
+        }
+
+        td:nth-of-type(2)::before {
+          content: "Gender";
+        }
+
+        td:nth-of-type(3)::before {
+          content: "Age";
+        }
+
+        td:nth-of-type(4)::before {
+          content: "Smoking";
+        }
+
+        td:nth-of-type(5)::before {
+          content: "Yellow Fingers";
+        }
+
+        td:nth-of-type(6)::before {
+          content: "Anxiety";
+        }
+
+        td:nth-of-type(7)::before {
+          content: "Peer Pressure";
+        }
+
+        td:nth-of-type(8)::before {
+          content: "Chronic Disease";
+        }
+
+        td:nth-of-type(9)::before {
+          content: "Fatigue";
+        }
+
+        td:nth-of-type(10)::before {
+          content: "Allergy";
+        }
+        td:nth-of-type(11)::before {
+          content: "Wheezing";
+        }
+        td:nth-of-type(12)::before {
+          content: "Alcohol";
+        }
+        td:nth-of-type(13)::before {
+          content: "Coughing";
+        }
+        td:nth-of-type(14)::before {
+          content: "Shortness of Breath";
+        }
+        td:nth-of-type(15)::before {
+          content: "Swallowing Difficulty";
+        }
+        td:nth-of-type(16)::before {
+          content: "Chest Pain";
+        }
+        td:nth-of-type(17)::before {
+          content: "Result";
+        }
+        td:nth-of-type(18)::before {
+          content: "Action";
+        }
+      }
+      body {
+        background-color: #ffc000;
+      }
+      .close {
+        position: absolute;
+        right: 32px;
+        top: 32px;
+        width: 32px;
+        height: 32px;
+        background-color: white;
+        border: 1px solid black;
+        color: black;
+      }
+      .close:before,
+      .close:after {
+        position: absolute;
+        left: 15px;
+        content: " ";
+        height: 33px;
+        width: 2px;
+        background-color: #333;
+      }
+      .close:before {
+        transform: rotate(45deg);
+      }
+      .close:after {
+        transform: rotate(-45deg);
+      }
+      @media all and (max-width: 968px) {
+        .close {
+          top: 10px;
+          right: 10px;
+        }
+      }
+    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+  </head>
+  <body>
+    <a href="{% url 'lungcancer' %}" class="close"></a>
+    <br />
+    <center>
+      <h1>YOUR PREVIOUS LUNG CANCER PREDICTION HISTORY</h1>
+      <br />
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Date and Time</th>
+              <th>Gender</th>
+              <th>Age</th>
+              <th>Smoking</th>
+              <th>Yellow Fingers</th>
+              <th>Anxiety</th>
+              <th>Peer Pressure</th>
+              <th>Chronic Disease</th>
+              <th>Fatigue</th>
+              <th>Allergy</th>
+              <th>Wheezing</th>
+              <th>Alcohol</th>
+              <th>Coughing</th>
+              <th>Shortness of Breath</th>
+              <th>Swallowing Difficulty</th>
+              <th>Chest Pain</th>
+              <th>Result</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {%for result in data%}
+            <tr>
+              <td>{{result.l_date}}</td>
+              <td>{{result.gender}}</td>
+              <td>{{result.age}}</td>
+              <td>{{result.smoking}}</td>
+              <td>{{result.yellow_fingers}}</td>
+              <td>{{result.anxiety}}</td>
+              <td>{{result.peer_pressure}}</td>
+              <td>{{result.chronic_disease}}</td>
+              <td>{{result.fatigue}}</td>
+              <td>{{result.allergy}}</td>
+              <td>{{result.wheezing}}</td>
+              <td>{{result.alcohol}}</td>
+              <td>{{result.coughing}}</td>
+              <td>{{result.shortness_of_breath}}</td>
+              <td>{{result.swallowing_difficulty}}</td>
+              <td>{{result.chest_pain}}</td>
+              {% if result.l_result == 'positive' %}
+              <td style="color: black; font-weight: bold">
+                {{result.l_result}}
+              </td>
+              {% else %}
+              <td style="color: #5ffb17; font-weight: bold">
+                {{result.l_result}}
+              </td>
+              {% endif %}
+              <td>
+                <a
+                  href="delLHist/{{result.lhis_id}}"
+                  onclick="return confirm('Are u sure you want to delete?')"
+                  class="tablebtn"
+                  >Delete</a
+                >
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </center>
+  </body>
+</html>
